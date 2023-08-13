@@ -31,27 +31,37 @@ void insertAtTail(node *&head, int val)
     temp->next = n;
 }
 
-// Add Node at the Start of the Linked List
-void insertAtHead(node *&head, int val)
+// Delete a Node in Linked List
+void DelInList(node *&head, int val)
 {
-    node *n = new node(val);
-    n->next = head;
-    head = n;
-}
-
-// Search a key value in Linked List
-bool searching(node *head, int key)
-{
-    while (head != NULL)
+    if (head->data == val)
     {
-        if (head->data == key)
-        {
-            return true;
-        }
+        node *del = head;
         head = head->next;
+        delete (del);
+        return;
     }
 
-    return false;
+    node *temp = head;
+    while (temp->next != NULL)
+    {
+        if (temp->next->data == val)
+        {
+            node *del = temp->next;
+            temp->next = temp->next->next;
+            delete (del);
+            return;
+        }
+        temp = temp->next;
+    }
+    if (temp->data == val)
+    {
+        node *del = temp->next;
+        temp->next = temp->next->next;
+        delete (del);
+        return;
+    }
+    cout << "Data Not Found" << endl;
 }
 
 // Display all Linked List
@@ -73,10 +83,10 @@ int main()
     insertAtTail(head, 2);
     insertAtTail(head, 3);
     insertAtTail(head, 4);
-    insertAtHead(head, 4);
-    insertAtHead(head, 9);
+    insertAtTail(head, 5);
     display(head);
-    cout << searching(head, 9);
+    DelInList(head, 1);
+    display(head);
 
     return 0;
 }
