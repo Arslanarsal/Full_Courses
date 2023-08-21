@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Creat a Node
-class node
+// Creat a ListNode
+class ListNode
 {
 public:
     int data;
-    node *next;
-    node *pre;
-    node(int val)
+    ListNode *next;
+    ListNode *pre;
+    ListNode(int val)
     {
         data = val;
         next = NULL;
@@ -16,17 +16,17 @@ public:
     }
 };
 
-// Add Node at the end of the Linked List
-void insertAtTail(node *&head, int val)
+// Add ListNode at the end of the Linked List
+void insertAtTail(ListNode *&head, int val)
 {
-    node *n = new node(val);
+    ListNode *n = new ListNode(val);
     if (head == NULL)
     {
         head = n;
         return;
     }
 
-    node *temp = head;
+    ListNode *temp = head;
     while (temp->next != NULL)
     {
         temp = temp->next;
@@ -36,7 +36,7 @@ void insertAtTail(node *&head, int val)
 }
 
 // Display all Linked List
-void display(node *head)
+void display(ListNode *head)
 {
     while (head != NULL)
     {
@@ -47,7 +47,7 @@ void display(node *head)
     return;
 }
 
-int length(node *head)
+int length(ListNode *head)
 {
     int n = 0;
     while (head != NULL)
@@ -57,10 +57,10 @@ int length(node *head)
     }
     return n;
 }
-void kappend(node *&head, int k)
+void kappend(ListNode *&head, int k)
 {
-    node *temp = head;
-    node *newtail;
+    ListNode *temp = head;
+    ListNode *newtail;
 
     int l = length(head);
     int n = (l - k) - 1;
@@ -81,27 +81,55 @@ void kappend(node *&head, int k)
     newtail->next = NULL;
 }
 
+// Remove Nth ListNode From End of List
+ListNode *removeNthFromEnd(ListNode *head, int n)
+{
+    int count = 0;
+    ListNode *temp = head;
+    while (temp != NULL)
+    {
+        count++;
+        temp = temp->next;
+    }
+    n = (count - n) - 1;
+    if (n < 0)
+    {
+        return head->next;
+    }
+    temp = head;
+    while (n)
+    {
+        temp = temp->next;
+        n--;
+    }
+
+    temp->next = temp->next->next;
+    return head;
+}
+
 int main()
 {
-    node *head = NULL;
+    ListNode *head = NULL;
     insertAtTail(head, 1);
     insertAtTail(head, 2);
-    insertAtTail(head, 3);
-    insertAtTail(head, 4);
-    insertAtTail(head, 5);
-    insertAtTail(head, 6);
+    // insertAtTail(head, 3);
+    // insertAtTail(head, 4);
+    // insertAtTail(head, 5);
+    // insertAtTail(head, 6);
 
     display(head);
-    kappend(head, 4);
+    // kappend(head, 4);
+
+    head = removeNthFromEnd(head, 1);
     display(head);
     return 0;
 }
 
-// node *kappend(node *head, int k)
+// ListNode *kappend(ListNode *head, int k)
 // {
-//     node *newhead;
-//     node *newtail;
-//     node *tail = head;
+//     ListNode *newhead;
+//     ListNode *newtail;
+//     ListNode *tail = head;
 //     int l = length(head);
 //     int count = 1;
 //     while (tail->next != NULL)

@@ -31,29 +31,6 @@ void insertAtTail(ListNode *&head, int x)
     temp->next = n;
 }
 
-// Add ListNode at the Start of the Linked List
-void insertAtHead(ListNode *&head, int x)
-{
-    ListNode *n = new ListNode(x);
-    n->next = head;
-    head = n;
-}
-
-// Search a key xue in Linked List
-bool searching(ListNode *head, int key)
-{
-    while (head != NULL)
-    {
-        if (head->val == key)
-        {
-            return true;
-        }
-        head = head->next;
-    }
-
-    return false;
-}
-
 // Display all Linked List
 void display(ListNode *head)
 {
@@ -73,10 +50,10 @@ int main()
     insertAtTail(head, 2);
     insertAtTail(head, 3);
     insertAtTail(head, 4);
-    insertAtHead(head, 4);
-    insertAtHead(head, 9);
+    insertAtTail(head, 5);
+    insertAtTail(head, 6);
+
     display(head);
-    cout << searching(head, 9);
 
     return 0;
 }
