@@ -49,23 +49,18 @@ void reorderList(ListNode *head)
     {
         return;
     }
-
     ListNode *slow = head;
     ListNode *fast = head;
-
     while (fast != NULL && fast->next != NULL)
     {
         slow = slow->next;
         fast = fast->next->next;
     }
-
     if (fast != NULL && fast->next == NULL)
     {
         slow = slow->next;
     }
-
     ListNode *temp = slow;
-
     ListNode *pre = NULL;
     ListNode *nex = NULL;
 
@@ -77,9 +72,7 @@ void reorderList(ListNode *head)
         pre = slow;
         slow = nex;
     }
-
     slow->next = pre;
-
     fast = head->next;
     nex = head;
     int n = 0;

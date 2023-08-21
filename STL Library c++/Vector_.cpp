@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 // vector is a array but in vector the memory allocation is Dynamic memory allocation
-// In vector if we add value the vactor size is automatically acctend
+// In vector if we add value the vactor size is automatically axtend
 
 // void printvector(vector<pair<int, char>> &v)
 void printvector(vector<int> &v)
