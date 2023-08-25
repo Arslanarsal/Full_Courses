@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+// We can store value in dq by decending order
+
+vector<int> maxSlidingWindow(vector<int> &nums, int k)
+{
+    deque<int> dq;
+    vector<int> ans;
+    int n = nums.size();
+    for (int i = 0; i < n; i++)
+    {
+        if (!dq.empty() && dq.front() == i - k)
+        {
+            dq.pop_front();
+        }
+
+        while (!dq.empty() && nums[dq.back()] < nums[i])
+        {
+            dq.pop_back();
+        }
+
+        dq.push_back(i);
+
+        if (i >= k - 1)
+        {
+            ans.push_back(nums[dq.front()]);
+        }
+    }
+    return ans;
+}
+
+void display(vector<int> v)
+{
+    for (auto a : v)
+    {
+        cout << a << " ";
+    }
+}
+int main()
+{
+    vector<int> v = {1, 3, -1, -3, 5, 3, 6, 7};
+
+    v = maxSlidingWindow(v, 3);
+    display(v);
+
+    return 0;
+}
