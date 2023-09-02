@@ -66,9 +66,9 @@ public:
 int main()
 {
     derived c1;
-    c1.print_data1();
-    c1.print_data2();
-    c1.print_derived();
+    // c1.print_data1();
+    // c1.print_data2();
+    // c1.print_derived();
 
     return 0;
 }

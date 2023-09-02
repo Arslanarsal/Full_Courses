@@ -11,8 +11,11 @@ public:
     {
         base1 = a;
     }
-    // virtual void display(){}
-    virtual void display()=0;//pure function -->if we do not write function in derived class they give error
+    virtual void display()
+    {
+        cout << "The value of base class is " << base1 << endl;
+    }
+    // virtual void display() = 0; // pure function -->if we do not write function in derived class they give error
 };
 
 class derived1 : public base
@@ -49,7 +52,7 @@ public:
     }
 };
 /*
-if we can't use virtual function in base class 
+if we can't use virtual function in base class
 every time ptr call ptr class display method
 if we use virtual function in base class ptr call the object class display method
 */

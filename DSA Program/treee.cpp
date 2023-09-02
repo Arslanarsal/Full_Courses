@@ -35,8 +35,8 @@ int main()
     p3->left = NULL;
     p3->right = p7;
 
-// when we creat node the left and right node are already NULL thats why we dont write code here
-// p4 , p5 , p7 are NuLL;
+    // when we creat node the left and right node are already NULL thats why we dont write code here
+    // p4 , p5 , p7 are NuLL;
 
     return 0;
 }

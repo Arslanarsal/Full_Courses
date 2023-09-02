@@ -14,7 +14,6 @@ vector<string> removeInvalidParentheses(string s)
         }
         else
         {
-
             if (!st.empty() && st.top() == '(')
             {
                 ans += "()";
@@ -22,7 +21,6 @@ vector<string> removeInvalidParentheses(string s)
             }
             else
             {
-
                 string temp = "";
                 while (!st.empty())
                 {

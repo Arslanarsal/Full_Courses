@@ -16,6 +16,7 @@ node *creatNode(int data)
     return ptr;
 }
 
+//------->>>>>     root-left-right
 void preOrder(node *root)
 {
     if (root != NULL)
@@ -26,6 +27,7 @@ void preOrder(node *root)
     }
 }
 
+//------->>>>>   left-right-root
 void postOrder(node *root)
 {
     if (root != NULL)
@@ -36,6 +38,7 @@ void postOrder(node *root)
     }
 }
 
+//------->>>>>     left-root-right
 void InOrder(node *root)
 {
     if (root != NULL)

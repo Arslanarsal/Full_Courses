@@ -10,7 +10,7 @@ inline int mul(int x, int y) // inline function improve the speed of function.
 }
 
 void vipmoney(int currentmney, float increas = 0.10) //-->if we not send second peremeter they use automatically
-                //predefind value (0.10) . when we send value they use our sending value not predefind value
+                                                     // predefind value (0.10) . when we send value they use our sending value not predefind value
 {
     cout << currentmney * increas;
 }
