@@ -1,13 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct node
+struct TreeNode
 {
     int val;
-    node *left;
-    node *right;
+    TreeNode *left;
+    TreeNode *right;
 
-    node(int data)
+    TreeNode(int data)
     {
         val = data;
         left = NULL;
@@ -16,7 +16,7 @@ struct node
 };
 
 //------->>>>>     root-left-right
-void preOrder(struct node *root)
+void preOrder(struct TreeNode *root)
 {
     if (root != NULL)
     {
@@ -27,33 +27,33 @@ void preOrder(struct node *root)
 }
 
 //------->>>>>     left-right-root
-void postOrder(struct node *root)
+void postOrder(struct TreeNode *root)
 {
     if (root != NULL)
     {
-        preOrder(root->left);
-        preOrder(root->right);
+        postOrder(root->left);
+        postOrder(root->right);
         cout << root->val << " ";
     }
 }
 
 //------->>>>>     left-root-right
-void InOrder(struct node *root)
+void InOrder(struct TreeNode *root)
 {
     if (root != NULL)
     {
 
-        preOrder(root->left);
+        InOrder(root->left);
         cout << root->val << " ";
-        preOrder(root->right);
+        InOrder(root->right);
     }
 }
 
 int main()
 {
-    struct node *root = new node(1);
-    root->left = new node(2);
-    root->right = new node(4);
+    struct TreeNode *root = new TreeNode(1);
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(4);
 
     
     preOrder(root);

@@ -5,7 +5,7 @@ void printMap(multimap<int, string> &m)
     for (auto &it : m)
         cout << it.first << " " << it.second << "\n";
 }
-// map use red black tree but unirdered map use hash table
+// map use red black tree but unOrdered map use hash table
 int main()
 {
     // In map value are store in sorted order
@@ -41,7 +41,7 @@ int main()
 
     // Multimap
     multimap<int, string> mm; // In multimap we can add same keys
-    mm = {{1, "ljvhc"} ,{1, "ljvhc"} };
+    mm = {{1, "ljvhc"}, {1, "ljvhc"}};
     printMap(mm);
 
     return 0;
