@@ -55,6 +55,8 @@ void InOrder(struct TreeNode *root)
     }
 }
 
+//------>>>>>>>  Build tree using inorder and preorder Array
+
 // int search(int inorder[], int start, int end, int cur)
 // {
 //     for (int i = start; i <= end; i++)
@@ -89,45 +91,35 @@ void InOrder(struct TreeNode *root)
 //     return node;
 // }
 
-int search(vector<int> &inorder, int start, int end, int cur)
-{
-    for (int i = start; i <= end; i++)
-    {
-        if (inorder[i] == cur)
-        {
-            return i;
-        }
-    }
-    return -1;
-}
+//------>>>>>>>  Build tree using inorder and preorder Array And here we use Map;
 
-TreeNode *buildTre(vector<int> &pre, vector<int> &in, int start, int end)
+TreeNode *buildTree(vector<int> &preorder, int preStart, int preEnd, vector<int> &inorder, int InStart, int InEnd, map<int, int> &mp)
 {
-    static int idx = 0;
-    if (start > end)
+    if (preStart > preEnd || InStart > InEnd)
     {
         return NULL;
     }
-    int cur = pre[idx];
-    idx++;
-    TreeNode *node = new TreeNode(cur);
-    if (start == end)
-    {
-        return node; // If there is no node on left and right then return node
-    }
 
-    int pos = search(in, start, end, cur);
-    node->left = buildTre(pre, in, start, pos - 1);
-    node->right = buildTre(pre, in, pos + 1, end);
+    TreeNode *root = new TreeNode(preorder[preStart]);
+    int inroot = mp[root->val];
+    int numleft = inroot - InStart;
 
-    return node;
+    root->left = buildTree(preorder, preStart + 1, preStart + numleft, inorder, InStart, inroot - 1, mp);
+
+    root->right = buildTree(preorder, preStart + numleft + 1, preEnd, inorder, inroot + 1, InEnd, mp);
+    return root;
 }
 
 TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder)
 {
-    return buildTre(preorder, inorder, 0, inorder.size() - 1);
-}
+    map<int, int> mp;
+    for (int i = 0; i < inorder.size(); i++)
+    {
+        mp[inorder[i]] = i;
+    }
 
+    return buildTree(preorder, 0, preorder.size() - 1, inorder, 0, inorder.size() - 1, mp);
+}
 int main()
 {
     vector<int> pre = {1, 2, 4, 3, 5};

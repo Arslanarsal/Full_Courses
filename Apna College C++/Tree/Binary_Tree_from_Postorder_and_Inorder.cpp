@@ -49,16 +49,40 @@ void InOrder(struct TreeNode *root)
     }
 }
 
-int main()
+TreeNode *buildTree(vector<int> &inorder, int is, int ie, vector<int> &postorder, int ps, int pe, map<int, int> &mp)
 {
-    struct TreeNode *root = new TreeNode(1);
-    root->left = new TreeNode(2);
-    root->right = new TreeNode(3);
+    if (is > ie || ps > pe)
+    {
+        return NULL;
+    }
+
+    TreeNode *root = new TreeNode(postorder[pe]);
+
+    int inroot = mp[root->val];
+    int numright = inroot - is;
 
     
-    preOrder(root);
-    cout << endl;
 
+    root->right = buildTree(inorder, inroot + 1, ie, postorder, ps + numright, pe - 1, mp);
+root->left = buildTree(inorder, is, inroot - 1, postorder, ps, ps + numright-1, mp);
+    return root;
+}
+
+TreeNode *buildTree(vector<int> &inorder, vector<int> &postorder)
+{
+    map<int, int> mp;
+    for (int i = 0; i < inorder.size(); i++)
+    {
+        mp[inorder[i]] = i;
+    }
+    return buildTree(inorder, 0, inorder.size() - 1, postorder, 0, postorder.size() - 1, mp);
+}
+
+int main()
+{
+    vector<int> post = {9, 15, 7, 20, 3};
+    vector<int> in = {9, 3, 15, 20, 7};
+    struct TreeNode *root = buildTree(in, post);
     postOrder(root);
     cout << endl;
 
