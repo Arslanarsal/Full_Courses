@@ -61,10 +61,9 @@ TreeNode *buildTree(vector<int> &inorder, int is, int ie, vector<int> &postorder
     int inroot = mp[root->val];
     int numright = inroot - is;
 
-    
-
+    root->left = buildTree(inorder, is, inroot - 1, postorder, ps, ps + numright - 1, mp);
     root->right = buildTree(inorder, inroot + 1, ie, postorder, ps + numright, pe - 1, mp);
-root->left = buildTree(inorder, is, inroot - 1, postorder, ps, ps + numright-1, mp);
+
     return root;
 }
 
