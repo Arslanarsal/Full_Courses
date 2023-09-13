@@ -49,63 +49,35 @@ void InOrder(struct TreeNode *root)
     }
 }
 
-TreeNode *BST(TreeNode *root, int val)
+TreeNode *built(vector<int> &nums, int min, int max)
 {
-    if (!root)
-    {
-        return new TreeNode(val);
-    }
-    if (val < root->val)
-    {
-        root->left = BST(root->left, val);
-    }
-    else
-    {
-        root->right = BST(root->right, val);
-    }
-    return root;
-}
-
-TreeNode *searchBST(TreeNode *root, int val)
-{
-    if (!root)
+    if (min > max)
     {
         return NULL;
     }
-    else if (root->val == val)
-    {
-        return root;
-    }
-    else if (val < root->val)
-    {
-        return searchBST(root->left, val);
-    }
-    else if (val > root->val)
-    {
-        return searchBST(root->right, val);
-    }
-    return;
+    int mid = (min + max) / 2;
+    TreeNode *root = new TreeNode(nums[mid]);
+    root->left = built(nums, min, mid - 1);
+    root->right = built(nums, mid + 1, max);
+    return root;
+}
+
+TreeNode *sortedArrayToBST(vector<int> &nums)
+{
+    return built(nums, 0, nums.size()-1);
 }
 
 int main()
 {
-    struct TreeNode *root = NULL;
-    root = BST(root, 5);
-    BST(root, 20);
-    BST(root, 19);
-    BST(root, 15);
-    BST(root, 11);
-    BST(root, 17);
+    vector<int> v = {10, 20};
+    struct TreeNode *root = sortedArrayToBST(v);
 
-    BST(root, 23);
-    BST(root, 25);
-    BST(root, 24);
-    BST(root, 28);
+    // preOrder(root);
+    // cout << endl;
 
-    InOrder(root);
-    cout << endl;
+    // postOrder(root);
+    // cout << endl;
 
-    root = searchBST(root, 15);
     InOrder(root);
     cout << endl;
     return 0;

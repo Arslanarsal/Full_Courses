@@ -21,11 +21,28 @@ const item = {
   hanzla: false,
   12: 754,
 };
+// for (let i = 0; i < Object.keys(item).length; i++) {
+//   console.log(
+//     "The mark of ",
+//     Object.keys(item)[i], //This will return key
+//     "\tare",
+//     item[Object.keys(item)[i]] // Here print value of the key
+//   );
+// }
 
-item["friend"] = "ali"
+for (let key in item) {
+  console.log(
+    "The mark of ",
+    key, //This will return key
+    "\tare",
+    item[key]
+  );
+}
 
-item["num"] = 123
-item["12"] = 123
+// item["friend"] = "ali";
+
+// item["num"] = 123;
+// item["12"] = 123;
 
 console.log(item["12"]);
 console.log(item.Umer);
