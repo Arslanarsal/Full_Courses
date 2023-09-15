@@ -49,6 +49,8 @@ void InOrder(struct TreeNode *root)
     }
 }
 
+
+//------->>>>>     Make BST Tree
 TreeNode *BST(TreeNode *root, int val)
 {
     if (!root)
