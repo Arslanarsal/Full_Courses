@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//Pair is relation between two data types or same data type we can say that pair is just like
-// a combination of two variable
+// Pair is relation between two data types or same data type we can say that pair is just like
+//  a combination of two variable
 
 int main()
 {
