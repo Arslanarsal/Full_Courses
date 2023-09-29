@@ -1,0 +1,12 @@
+/* 
+Flex  --- Flex is the value of css display . By using display flex in parent element,
+          child elements automatically align like column or row with auto width and auto
+           height.
+
+align-item       : center; Y-axis  ; cross-axis
+justify-content  : center; X-axis  ; main-axis
+justify-content  : space-around  , evenly , between;
+flex-wrap        : wrap; this will write in parent
+flex-direction   : column; All element direction is column 
+
+*/

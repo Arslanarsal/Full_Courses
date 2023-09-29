@@ -1,0 +1,44 @@
+/* 
+
+ Media queries ---- Media queries are a key part of responsive web design, as they allow
+         you to create different layouts depending on the size of the viewport, but they
+         can also be used to detect other things about the environment your site is
+         running on, for example whether the user is using a touchscreen rather than a 
+         mouse.
+
+*/
+
+.main {
+  height: 700px;
+  width: 700px;
+  background-color: blue;
+}
+
+@media (max-height: 600px) {
+  /* This properity work under 600px */
+  .main {
+    background-color: yellow;
+  }
+}
+
+@media (min-height: 600px) {
+  /* This properity work after 600px */
+  .main {
+    background-color: pink;
+  }
+}
+
+@media (max-width: 600px) {
+  /* This properity work under 600px */
+
+  .main {
+    background-color: red;
+  }
+}
+
+@media (min-width: 600px) {
+  /* This properity work after 600px */
+  .main {
+    background-color: black;
+  }
+}
