@@ -1,0 +1,32 @@
+/* 
+Units in CSS
+px  ---- Pixels are fix in every screen 
+%   ---- Percentage are get height and width according to his parent
+vw  ---- Viewport width is cover width according to the screen width not his parent  
+vh  ---- Viewport height is cover height according to the screen height not his parent
+vmax & vmin  ---- vmin and vmax represent the maximum and minimum viewport dimension. 
+        if you were on a phone that is 300px wide and 800px tall, vmin would represent 
+         the width of the viewport and vmax would represent the height of the device.
+        if you were on a phone that is 800px wide and 300px tall, vmin would represent 
+         the height of the viewport and vmax would represent the width of the device.
+    ----We can also use font-size in (vh , vw , vmin , vmax)
+em ---- emphemeral is a font-size according to it parent if the parent font-size is 30px
+         and we give child font-size is 1em then it's size is 30px if we give 2em then 
+         it's size is 60px (em multiply to it parent)
+rem --- Root-emphemeral  dictate an element's font size relative to the size of the root
+         element.By default root size is 16px if the root element is 16px, an element 
+         with the value 1rem will also equal 16px.
+
+
+*/
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}

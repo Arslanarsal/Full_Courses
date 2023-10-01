@@ -49,42 +49,36 @@ void InOrder(struct TreeNode *root)
     }
 }
 
-
-//------->>>>>     Make BST Tree
-TreeNode *BST(TreeNode *root, int val)
+TreeNode *built(vector<int> &nums, int min, int max)
 {
-    if (!root)
+    if (min > max)
     {
-        return new TreeNode(val);
+        return NULL;
     }
-    if (val < root->val)
-    {
-        root->left = BST(root->left, val);
-    }
-    else
-    {
-        root->right = BST(root->right, val);
-    }
+    int mid = (min + max) / 2;
+    TreeNode *root = new TreeNode(nums[mid]);
+    root->left = built(nums, min, mid - 1);
+    root->right = built(nums, mid + 1, max);
     return root;
+}
+
+TreeNode *sortedArrayToBST(vector<int> &nums)
+{
+    return built(nums, 0, nums.size()-1);
 }
 
 int main()
 {
-    struct TreeNode *root = NULL;
-    root = BST(root, 5);
-    BST(root, 1);
-    BST(root, 3);
-    BST(root, 4);
-    BST(root, 2);
-    BST(root, 7);
+    vector<int> v = {10, 20};
+    struct TreeNode *root = sortedArrayToBST(v);
 
-    preOrder(root);
-    cout << endl;
-
-    postOrder(root);
-    cout << endl;
-
-    // InOrder(root);
+    // preOrder(root);
     // cout << endl;
+
+    // postOrder(root);
+    // cout << endl;
+
+    InOrder(root);
+    cout << endl;
     return 0;
 }

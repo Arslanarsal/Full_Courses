@@ -51,10 +51,10 @@ int main()
     s.insert(1);
     s.insert(4);
     // set<int>:: iterator it = s.find(1);
-    auto it = s.find(1);// That code are same
+    auto it = s.find(1); // That code are same
     // cout<<(*it);
-    s.erase(it);//We can give iterator of the key but erase onlt iterator value 1 not all 1 values
-    s.erase(7);//We can give directly key //-->O(log(n)); but arase all 7 in set
+    s.erase(it); // We can give iterator of the key but erase only iterator value 1 not all 1 values
+    s.erase(7);  // We can give directly key //-->O(log(n)); but arase all 7 in set
     print(s);
     return 0;
 }

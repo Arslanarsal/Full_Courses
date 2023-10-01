@@ -84,6 +84,7 @@ TreeNode *searchBST(TreeNode *root, int val)
     {
         return searchBST(root->right, val);
     }
+    return;
 }
 
 int main()
