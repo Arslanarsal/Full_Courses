@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="DOM____.css">
-    <title>DOM </title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>DOM</title>
+    <style>
+      #bulb {
+        height: 300px;
+        width: 300px;
+        border: 4px solid black;
+        border-radius: 50%;
+      }
+
+      button {
+        padding: 20px 20px;
+        margin: 50px;
+      }
+    </style>
+  </head>
+  <body>
     <h1>This is Dom</h1>
 
     <div id="bulb"></div>
     <button id="on-off">ON/OFF</button>
 
-    <script src="DOM_.js"></script>
-</body>
+    <script>
+      let a = document.getElementById("bulb");
+
+      // console.log(a);
+      // a.innerHTML= "Kasy ho"
+      // a.style.color = "red";
+
+      // a.addEventListener('click' , function(){
+      //     a.style.backgroundColor = "blue"
+      // })
+
+      let flag = false;
+      let s = document.getElementById("on-off");
+      s.addEventListener("click", function () {
+        if (!flag) {
+          a.style.backgroundColor = "yellow";
+          flag = true;
+        } else {
+          a.style.backgroundColor = "white";
+          flag = false;
+        }
+      });
+    </script>
+  </body>
 </html>

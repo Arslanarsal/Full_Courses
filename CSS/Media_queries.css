@@ -14,6 +14,8 @@
   background-color: blue;
 }
 
+/* This properity for height */
+
 @media (max-height: 600px) {
   /* This properity work under 600px */
   .main {
@@ -27,6 +29,8 @@
     background-color: pink;
   }
 }
+
+/* This properity for width */
 
 @media (max-width: 600px) {
   /* This properity work under 600px */
