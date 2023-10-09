@@ -5,18 +5,18 @@
 
 //------------>>>>>>>                 Array Methods
 //---------------------------------------Join
-// let c1 = arr.join("_  "); //----This will add anything after element But not changing in original array
+// let c1 = arr.join("_  "); //----This will add anything after every element But not changing in original array
 // console.log(arr);
 // console.log(c1);
-// let num = [1, 2, 3, 34, 4];
+let num = [1, 2, 3, 34, 4];
 // let b = num.toString(); //------>> This will convert array into String
 // console.log(b, typeof b) //------>> This will show type of array
 
 //---------------->>>>>>>>>>>>>>>  Add element from array
 // let r = num.push(56) // push returns the new array length and also add element in last
 // console.log(num, r)
-// let r = num.unshift(78)//unshift returns the new array length and add element in front
-// console.log(r, num)
+let r = num.unshift(78)//unshift returns the new array length and add element in front
+console.log(num, r)
 
 //---------------->>>>>>>>>>>>>>>  remove element from array
 // let r = num.shift()// Removes an element from the start of the array and return it

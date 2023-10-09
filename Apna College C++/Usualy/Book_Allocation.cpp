@@ -23,7 +23,6 @@ int allocate(vector<int> &nums, int mid)
 int bookAllocation(vector<int> &v, int std)
 {
     int low = 0, high = 0;
-    int ans = INT_MAX;
     for (int i = 0; i < v.size(); i++)
     {
         high += v[i];
@@ -42,7 +41,6 @@ int bookAllocation(vector<int> &v, int std)
         }
         else
         {
-
             high = mid - 1;
         }
     }
