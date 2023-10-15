@@ -58,14 +58,14 @@ void InOrder(node *root)
     }
 }
 
-node *inOderPredecessor(node *root)
-{
-    while (root->right != NULL)
-    {
-        root = root->right;
-    }
-    return root;
-}
+// node *inOderPredecessor(node *root)
+// {
+//     while (root->right != NULL)
+//     {
+//         root = root->right;
+//     }
+//     return root;
+// }
 
 node *left_leaf(node *root)
 {
@@ -119,7 +119,8 @@ node *deleteNode(node *root, int value)
     }
     else
     {
-        ipre = inOderPredecessor(root->left);
+        // ipre = inOderPredecessor(root->left);
+        ipre = left_leaf(root->left);
         root->data = ipre->data;
         root->left = deleteNode(root->left, ipre->data);
     }
