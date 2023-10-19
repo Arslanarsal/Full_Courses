@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+
 class node
 {
 public:
@@ -8,15 +9,29 @@ public:
     node *left;
 };
 
+// Function to create a new node
 node *creatNode(int data)
 {
+    // Create a new node
     node *ptr = new node;
+
+    // Assign data to the new node
     ptr->data = data;
+
+    // Initialize left and right children as NULL
     ptr->left = NULL;
     ptr->right = NULL;
+
+    // Return the new node
     return ptr;
 }
-
+/*
+                                2
+                               / \
+                              3   4
+                             / \   \
+                            5   6   8
+*/
 int main()
 {
     node *p1 = creatNode(2);

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <button>Click Here</button>
+    <script>
+      /*
+    In JavaScript, "this" refers to the current context or object.
+    Depending on where "this" is used, it can refer to different objects.
+
+    Here are some examples to demonstrate the behavior of "this" in various contexts.
+    */
+
+      // Example 1: "this" in a regular function
+      function example1() {
+        console.log(this); // "this" refers to the global object (window in a browser)
+      }
+      example1();
+
+      // Example 2: "this" in a method of an object
+      /*
+      In any Method, "This" Keyword always refers to parent Object
+      When we creat a function in a Object That called Method Otherwise Function
+      */
+      var example2Object = {
+        name: "John",
+        sayHello: function () {
+          console.log(this); // "this" refers to the object example2Object
+        },
+      };
+      example2Object.sayHello();
+
+      // Example 3: "this" within an event listener callback
+      /*
+      Here This keyword refer to Whatever Written before .addEventListener
+      */
+      let button = document.querySelector("button");
+      button.addEventListener("click", function () {
+        console.log(this); // "this" refers to the DOM element that triggered the event (the button)
+        this.style.color = "red";
+        button.style.color = "red";
+      });
+
+      // Example 4: Using "call" to specify the value of "this" explicitly
+      /* 
+      Bydefault In function this refer to window When we want it not refer to window it refer to any object then we use .call()          and write the object name in .call(obj)
+      */
+      function example4(val1, val2) {
+        console.log(this.name, val1, val2); // Here, "this" refers to the provided object
+      }
+      let example4Object = {
+        name: "Alice",
+      };
+      example4(example4Object); // "this" will refer to Window
+      example4.call(example4Object); // "this" will refer to example4Object
+      example4.call(example4Object, 2, 3); // "this" will refer to example4Object, and 2 and 3 will be passed as arguments
+
+      // Example 5: Using "bind" to bind a function to a specific "this" context
+      function example5(val1, val2) {
+        console.log(this.name, val1, val2);
+      }
+      let example5Object = {
+        name: "Bob",
+      };
+      var bindedExample5 = example5.bind(example5Object, 4, 5); // Binds example5 to example5Object and provides 4 and 5 as arguments
+      bindedExample5(); // Calling the binded function. bind not run function but it bind the function to object and return it when we want to use the return function we call 
+
+      let example6Object = {
+        name: "Bob",
+      };
+      example5.apply(example6Object, [4, 5]); // "this" will refer to example5Object, and [4, 5] will be passed as arguments. If we want to send value in array then use Apply  (2->val1 and 3->val2)
+    </script>
+  </body>
+</html>

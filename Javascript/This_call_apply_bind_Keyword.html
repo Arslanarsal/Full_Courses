@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <button>Click Here</button>
+    <script>
+      //   console.log(this); //    Give Window Object
+      //   function abcd() {
+      //     console.log(this); //  Give Window Object
+      //   }
+      //   abcd();
+
+      /*
+      In any Method, "This" Keyword always refers to parent Object
+      */
+      //   var abcd = {
+      //     name: "Arslan",
+      //     getthis: function abcd() {
+      //       //When we creat a function in a Object That called Method Otherwise Function
+      //       console.log(this); //       Give abcd Object
+      //     },
+      //   };
+      //   abcd.getthis();
+
+      /*
+      Here This keyword refer to Whatever Written before .addEventListener
+      */
+      //   let button = document.querySelector("button");
+      //   button.addEventListener("click", function () {
+      //     // console.log(this);
+      //     // this.style.color = "red";
+      //     button.style.color = "red";
+      //   });
+
+      //------>>>>>>>>>>Call
+      function abc(val1, val2) {
+        // console.log(this);
+        // console.log(this.name); // Here this refer to Object
+        console.log(this.name, val1, val2); // Here this refer to Object and print values
+      }
+      let obj = {
+        name: "Arslan",
+      };
+      //Bydefault In function this refer to window When we want it not refer to window it refer to any object then we use .call()          and write the object name in .call(obj)
+
+      //   abc();    //When we call Function Here this refer to Window
+      //   abc.call(obj); //When we call Function Here this refer to Object
+      //   abc.call(obj, 2, 3); //If we want to send variables (2->val1 and 3->val2)
+      //   abc.apply(obj, [2, 3]); //If we want to send value in array then use Apply  (2->val1 and 3->val2)
+      var binde = abc.bind(obj, [2, 3]); //bind not run function but it bind the function to object and return it when we want to use the return function we call it
+      binde();
+    </script>
+  </body>
+</html>
