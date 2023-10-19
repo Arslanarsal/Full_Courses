@@ -40,7 +40,7 @@ bool chcek(TreeNode *root, int min, int max)
         return true;
     }
 
-    if (root->val <= min && root->val >= max)
+    if (root->val <= min || root->val >= max)
     {
         return false;
     }
@@ -51,7 +51,7 @@ bool chcek(TreeNode *root, int min, int max)
 
 bool isValidBST(TreeNode *root)
 {
-    return chcek(root, INT_MIN, INT_MAX);
+    return chcek(root, LONG_MIN, LONG_MAX);
 }
 
 int main()
