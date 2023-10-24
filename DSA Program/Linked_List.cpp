@@ -49,13 +49,14 @@ void makeNodes(stde *&head, int val)
     tempptr->ptr = newptr;
 }
 
-void display(stde* head)
+void display(stde *head)
 {
     while (head != NULL)
     {
-        cout << head->data<<endl;
+        cout << head->data << "->";
         head = head->ptr;
     }
+    cout << "NULL" << endl;
 }
 
 int main()
