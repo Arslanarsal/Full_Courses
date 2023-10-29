@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
+// Define a class for a node in the linked list
 class Node
 {
     int object;
@@ -18,6 +18,7 @@ public:
     }
 };
 
+// Define a class for a singly linked list
 class List
 {
     int size;
@@ -26,7 +27,7 @@ class List
     Node *lastcurNode;
 
 public:
-    // Constructor
+    // Constructor for the list
     List()
     {
         headNode = new Node();
@@ -57,6 +58,7 @@ public:
         return currentNode;
     }
 
+    // Move the current pointer to the start of the list
     void start()
     {
         if (headNode->getNext())
@@ -66,6 +68,7 @@ public:
         lastcurNode = headNode;
     }
 
+    // Move the current pointer to the end of the list
     void tail()
     {
         while (currentNode->getNext() != NULL)
@@ -75,7 +78,7 @@ public:
         }
     }
 
-    // Add an element to the next element of the current Pointer of the list
+    // Add an element after the current pointer in the list
     void add(int addObject)
     {
         Node *newNode = new Node();
@@ -94,17 +97,20 @@ public:
         currentNode = newNode;
         size++;
     }
-    // void add(int addObject)
-    // {
-    //     Node *newNode = new Node();
-    //     newNode->set(addObject);
-    //     newNode->setNext(currentNode->getNext());
-    //     currentNode->setNext(newNode);
-    //     lastcurNode = currentNode;
-    //     currentNode = newNode;
-    //     size++;
-    // }
 
+    // Add an element to the front of the list
+    void add_front(int addObject)
+    {
+        Node *newNode = new Node();
+        newNode->set(addObject);
+        newNode->setNext(headNode->getNext());
+        headNode->setNext(newNode);
+        lastcurNode = headNode;
+        currentNode = newNode;
+        size++;
+    }
+
+    // Update the value of the current node
     void update(int num, int add)
     {
         if (!(find(num)))
@@ -115,19 +121,7 @@ public:
         currentNode->set(add);
     }
 
-    // // Add an element to the front of the list
-    // void add_front(int addObject)
-    // {
-    //     Node *newNode = new Node();
-    //     newNode->set(addObject);
-    //     newNode->setNext(headNode->getNext());
-    //     headNode->setNext(newNode);
-    //     lastcurNode = headNode;
-    //     currentNode = newNode;
-    //     size++;
-    // }
-
-    // Add an element after a specific value
+    // Add an element after a specific value in the list
     void add_at(int addObject, int num)
     {
         if (!(find(num)))
@@ -189,6 +183,7 @@ public:
         currentNode = currentNode->getNext();
     }
 
+    // Move to the previous element
     void back()
     {
         if (lastcurNode == headNode)
@@ -201,7 +196,7 @@ public:
         }
     }
 
-    // Get the current element's value
+    // Get the value of the current element
     void getcurrent()
     {
         if (currentNode == NULL)
@@ -235,12 +230,85 @@ int main()
 {
     List myList;
 
-    myList.add(1);
-    myList.add(2);
-    myList.add(3);
-    myList.add(4);
-    myList.add(5);
-    myList.printList();
+    int choice;
+    int num, addObject;
+
+    do
+    {
+        cout << "Linked List Menu:" << endl;
+        cout << "           1. Add an element" << endl;
+        cout << "           2. Update an element" << endl;
+        cout << "           3. Remove an element" << endl;
+        cout << "           4. Move to the next element" << endl;
+        cout << "           5. Move to the previous element" << endl;
+        cout << "           6. Move to the start of the list" << endl;
+        cout << "           7. Move to the end of the list" << endl;
+        cout << "           8. Add an element to the front" << endl;
+        cout << "           9. Print the list" << endl;
+        cout << "           10. Get the current element" << endl;
+        cout << "           11. Get the size of the list" << endl;
+        cout << "           12. Remove the current element" << endl;
+        cout << "           13. Exit" << endl;
+
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            cout << "Enter the element to add: ";
+            cin >> addObject;
+            myList.add(addObject);
+            break;
+        case 2:
+            cout << "Enter the element to update: ";
+            cin >> num;
+            cout << "Enter the new value: ";
+            cin >> addObject;
+            myList.update(num, addObject);
+            break;
+        case 3:
+            cout << "Enter the element to remove: ";
+            cin >> num;
+            myList.remove_num(num);
+            break;
+        case 4:
+            myList.next();
+            break;
+        case 5:
+            myList.back();
+            break;
+        case 6:
+            myList.start();
+            break;
+        case 7:
+            myList.tail();
+            break;
+        case 8:
+            cout << "Enter the element to add to the front: ";
+            cin >> addObject;
+            myList.add_front(addObject); // Add to the front
+            break;
+        case 9:
+            myList.printList();
+            break;
+        case 10:
+            myList.getcurrent();
+            break;
+        case 11:
+            cout << "List size: " << myList.Listsize() << endl;
+            break;
+        case 12:
+            myList.remove_();
+            break;
+        case 13:
+            cout << "Exiting the program." << endl;
+            break;
+        default:
+            cout << "Invalid choice. Please try again." << endl;
+        }
+
+    } while (choice != 13);
 
     return 0;
 }
