@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 // Define a class for a node in the linked list
@@ -78,7 +78,7 @@ public:
         }
     }
 
-    // Add an element after the current pointer in the list
+    // Add an element in the list
     void add(int addObject)
     {
         Node *newNode = new Node();
@@ -98,36 +98,38 @@ public:
         size++;
     }
 
-    // Add an element to the front of the list
-    void add_front(int addObject)
+    // Update an element at a specific index
+    void update(int idx, int add)
     {
-        Node *newNode = new Node();
-        newNode->set(addObject);
-        newNode->setNext(headNode->getNext());
-        headNode->setNext(newNode);
-        lastcurNode = headNode;
-        currentNode = newNode;
-        size++;
-    }
-
-    // Update the value of the current node
-    void update(int num, int add)
-    {
-        if (!(find(num)))
+        if (idx > size)
         {
             cout << "Invalid Number" << endl;
             return;
         }
+        currentNode = headNode->getNext();
+        lastcurNode = headNode;
+        while (--idx)
+        {
+            lastcurNode = currentNode;
+            currentNode = currentNode->getNext();
+        }
         currentNode->set(add);
     }
 
-    // Add an element after a specific value in the list
-    void add_at(int addObject, int num)
+    // Add an element at a specific index
+    void add_at(int addObject, int idx)
     {
-        if (!(find(num)))
+        if (idx > size + 1)
         {
             cout << "Invalid Number" << endl;
             return;
+        }
+        currentNode = headNode;
+        lastcurNode = headNode;
+        while (--idx)
+        {
+            lastcurNode = currentNode;
+            currentNode = currentNode->getNext();
         }
         add(addObject);
     }
@@ -149,7 +151,6 @@ public:
             size--;
             return;
         }
-
         currentNode = lastcurNode;
         if (currentNode != headNode)
         {
@@ -159,17 +160,23 @@ public:
                 lastcurNode = lastcurNode->getNext();
             }
         }
-
         size--;
     }
 
-    // Remove an element with a specific value
-    void remove_num(int num)
+    // Remove an element at a specific index
+    void remove_at(int idx)
     {
-        if (!(find(num)))
+        if (idx > size)
         {
-            cout << "This Number is Not in the List" << endl;
+            cout << "Invalid Number" << endl;
             return;
+        }
+        currentNode = headNode->getNext();
+        lastcurNode = headNode;
+        while (--idx)
+        {
+            lastcurNode = currentNode;
+            currentNode = currentNode->getNext();
         }
         remove_();
     }
@@ -228,87 +235,92 @@ public:
 
 int main()
 {
-    List myList;
+    List myList; // Create an instance of the List class
 
     int choice;
-    int num, addObject;
+    int value, index;
 
     do
     {
-        cout << "Linked List Menu:" << endl;
-        cout << "           1. Add an element" << endl;
-        cout << "           2. Update an element" << endl;
-        cout << "           3. Remove an element" << endl;
-        cout << "           4. Move to the next element" << endl;
-        cout << "           5. Move to the previous element" << endl;
-        cout << "           6. Move to the start of the list" << endl;
-        cout << "           7. Move to the end of the list" << endl;
-        cout << "           8. Add an element to the front" << endl;
-        cout << "           9. Print the list" << endl;
-        cout << "           10. Get the current element" << endl;
-        cout << "           11. Get the size of the list" << endl;
-        cout << "           12. Remove the current element" << endl;
-        cout << "           13. Exit" << endl;
-
+        // Display the menu
+        cout << "\nLinked List Menu:" << endl;
+        cout << "1. Add an element in the list" << endl;
+        cout << "2. Add an element at a specific index" << endl;
+        cout << "3. Update an element at a specific index" << endl;
+        cout << "4. Remove the current element" << endl;
+        cout << "5. Remove an element at a specific index" << endl;
+        cout << "6. Move to the next element" << endl;
+        cout << "7. Move to the previous element" << endl;
+        cout << "8. Get the value of the current element" << endl;
+        cout << "9. Get the size of the list" << endl;
+        cout << "10. Print the list" << endl;
+        cout << "0. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice)
         {
         case 1:
-            cout << "Enter the element to add: ";
-            cin >> addObject;
-            myList.add(addObject);
+            cout << "Enter the value to add: ";
+            cin >> value;
+            myList.add(value);
             break;
+
         case 2:
-            cout << "Enter the element to update: ";
-            cin >> num;
-            cout << "Enter the new value: ";
-            cin >> addObject;
-            myList.update(num, addObject);
+            cout << "Enter the value to add: ";
+            cin >> value;
+            cout << "Enter the index: ";
+            cin >> index;
+            myList.add_at(value, index);
             break;
+
         case 3:
-            cout << "Enter the element to remove: ";
-            cin >> num;
-            myList.remove_num(num);
+            cout << "Enter the index: ";
+            cin >> index;
+            cout << "Enter the new value: ";
+            cin >> value;
+            myList.update(index, value);
             break;
+
         case 4:
-            myList.next();
-            break;
-        case 5:
-            myList.back();
-            break;
-        case 6:
-            myList.start();
-            break;
-        case 7:
-            myList.tail();
-            break;
-        case 8:
-            cout << "Enter the element to add to the front: ";
-            cin >> addObject;
-            myList.add_front(addObject); // Add to the front
-            break;
-        case 9:
-            myList.printList();
-            break;
-        case 10:
-            myList.getcurrent();
-            break;
-        case 11:
-            cout << "List size: " << myList.Listsize() << endl;
-            break;
-        case 12:
             myList.remove_();
             break;
-        case 13:
+
+        case 5:
+            cout << "Enter the index to remove: ";
+            cin >> index;
+            myList.remove_at(index);
+            break;
+
+        case 6:
+            myList.next();
+            break;
+
+        case 7:
+            myList.back();
+            break;
+
+        case 8:
+            myList.getcurrent();
+            break;
+
+        case 9:
+            cout << "List size: " << myList.Listsize() << endl;
+            break;
+
+        case 10:
+            myList.printList();
+            break;
+
+        case 0:
             cout << "Exiting the program." << endl;
             break;
+
         default:
             cout << "Invalid choice. Please try again." << endl;
+            break;
         }
-
-    } while (choice != 13);
+    } while (choice != 0);
 
     return 0;
 }

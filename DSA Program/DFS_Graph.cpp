@@ -1,5 +1,7 @@
 #include <iostream>
 using namespace std;
+
+
 int vistedNode[] = {0, 0, 0, 0, 0, 0, 0};
 int a[7][7] = {
     {0, 1, 1, 1, 0, 0, 0},

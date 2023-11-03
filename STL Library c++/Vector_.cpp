@@ -25,7 +25,7 @@ int main()
     v.push_back(5);
     // cout << v.front(); // This will print first value here 2 is first value;
     // cout << v.front(); // This will print first value here 2 is first value;
-    v.pop_back();      // pop function will pop the last allment
+    v.pop_back(); // pop function will pop the last allment
     printvector(v);
 
     // --> Vector pair

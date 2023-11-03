@@ -1,347 +1,275 @@
-// #include <bits/stdc++.h>
-using namespace std;
-
-// class List
-// {
-//     int A[100];
-//     int current;
-//     int size;
-
-// public:
-
-//     List()
-//     {
-//         current = -1;
-//         size = 0;
-//     }
-//     void add(int x)
-//     {
-//         if (size > 100)
-//         {
-//             cout << "List is OverFlow" << endl;
-//             return;
-//         }
-//         current++;
-//         size++;
-//         A[current] = x;
-//     }
-
-//     void find(int x)
-//     {
-//         for (int i = 0; i < size; i++)
-//         {
-//             if (A[i] == x)
-//             {
-//                 cout << "Value is found" << endl;
-//                 return;
-//             }
-//         }
-//         cout << "Value is Not in the list" << endl;
-//         return;
-//     }
-//     int length()
-//     {
-//         return size;
-//     }
-
-//     void remove()
-//     {
-//         if (size == 0)
-//         {
-//             cout << "List is Empty" << endl;
-//             return;
-//         }
-//         size--;
-//     }
-
-//     void Update(int x, int j)
-//     {
-//         if (j > size)
-//         {
-//             cout << "Wrong index" << endl;
-//             return;
-//         }
-//         A[j] = x;
-//     }
-
-//     void add_at(int x, int j)
-//     {
-//         int i;
-//         for (i = size; i > j; i--)
-//         {
-//             A[i] = A[i - 1];
-//         }
-//         A[i] = x;
-//         size++;
-//     }
-//     void remove_at(int j)
-//     {
-//         for (int i = j; i < size; i++)
-//         {
-//             A[i] = A[i + 1];
-//         }
-//         size--;
-//     }
-
-//     int print()
-//     {
-//         for (int i = 0; i < size; i++)
-//         {
-//             cout << A[i] << " ";
-//         }
-//         cout << endl;
-//     }
-// };
-
-// int main()
-// {
-//     List a;
-//     a.add(1);
-//     a.add(2);
-//     a.add(3);
-//     a.add(4);
-//     // a.find(2);
-//     // a.Update(23,1);
-//     // a.remove();
-//     // a.remove_at(1);
-//     // a.add_at(9, 0);
-//     // cout << a.length() << endl;
-//     a.print();
-
-//     return 0;
-// }
-
 #include <iostream>
+using namespace std;
 
 class ArrayList
 {
-private:
-    int *arr;
     int size;
-    int capacity;
-    int currentIndex;
+    int array[100];
+    int currentIdx;
 
 public:
-    ArrayList(int initialCapacity = 10)
+    ArrayList()
     {
-        capacity = initialCapacity;
         size = 0;
-        currentIndex = -1;
-        arr = new int[capacity];
+        currentIdx = -1;
     }
 
-    void resize()
-    {
-        int newCapacity = capacity * 2;
-        int *newArr = new int[newCapacity];
-        for (int i = 0; i < size; i++)
-        {
-            newArr[i] = arr[i];
-        }
-        delete[] arr;
-        arr = newArr;
-        capacity = newCapacity;
-    }
-
+    // Add an element in the list
     void add(int addObject)
     {
-        if (size == capacity)
+        if (size < 100)
         {
-            resize();
-        }
-        size++;
-        currentIndex++;
-        arr[currentIndex] = addObject;
-    }
-
-    void add_front(int addObject)
-    {
-        if (size == capacity)
-        {
-            resize();
-        }
-        size++;
-        for (int i = size - 1; i > 0; i--)
-        {
-            arr[i] = arr[i - 1];
-        }
-        arr[0] = addObject;
-        currentIndex++;
-    }
-
-    void update(int num, int add)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            if (arr[i] == num)
+            currentIdx++;
+            if (currentIdx < size)
             {
-                arr[i] = add;
-                break;
-            }
-        }
-    }
-
-    void remove_num(int num)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            if (arr[i] == num)
-            {
-                for (int j = i; j < size - 1; j++)
+                // Move existing elements to the right to make space for the new element
+                for (int i = size; i > currentIdx; i--)
                 {
-                    arr[j] = arr[j + 1];
+                    array[i] = array[i - 1];
                 }
-                size--;
-                currentIndex--;
-                break;
             }
-        }
-    }
-
-    void remove_()
-    {
-        if (currentIndex >= 0)
-        {
-            for (int i = currentIndex; i < size - 1; i++)
-            {
-                arr[i] = arr[i + 1];
-            }
-            size--;
-            currentIndex--;
-        }
-    }
-
-    void start()
-    {
-        currentIndex = 0;
-    }
-
-    void tail()
-    {
-        currentIndex = size - 1;
-    }
-
-    void next()
-    {
-        if (currentIndex < size - 1)
-        {
-            currentIndex++;
-        }
-    }
-
-    void back()
-    {
-        if (currentIndex > 0)
-        {
-            currentIndex--;
-        }
-    }
-
-    void getcurrent()
-    {
-        if (currentIndex >= 0 && currentIndex < size)
-        {
-            cout << arr[currentIndex] << endl;
+            array[currentIdx] = addObject; // Add the element at the current index
+            size++;
         }
         else
         {
-            cout << "NULL" << endl;
+            cout << "List is full. Cannot add more elements." << endl;
         }
     }
 
-    int Listsize()
+    // Update an element at a specific index
+    void update(int idx, int add)
+    {
+        idx -= 1;
+        if (idx >= 0 && idx < size)
+        {
+            array[idx] = add;
+            currentIdx = idx;
+        }
+        else
+        {
+            cout << "Invalid index." << endl;
+        }
+    }
+
+    // Add an element at a specific index
+    void add_at(int addObject, int idx)
+    {
+        if (size >= 100)
+        {
+            cout << "List is full. Cannot add more elements." << endl;
+            return;
+        }
+        else if (size == 0 && idx == 1)
+        {
+            currentIdx++;
+            array[currentIdx] = addObject;
+            size++;
+            return;
+        }
+        if (idx >= 0 && idx <= size)
+        {
+            idx--;u
+            currentIdx = idx;
+            add(addObject);
+        }
+        else
+        {
+            cout << "Invalid index." << endl;
+        }
+    }
+
+    // Remove an element at a specific index
+    void remove_at(int idx)
+    {
+        idx -= 1;
+        if (idx >= 0 && idx < size)
+        {
+            for (int i = idx; i < size - 1; i++)
+            {
+                array[i] = array[i + 1];
+            }
+            size--;
+            currentIdx = idx;
+        }
+        else
+        {
+            cout << "Invalid index." << endl;
+        }
+    }
+
+    void remove()
+    {
+        if (currentIdx < size)
+        {
+            for (int i = currentIdx; i < size - 1; i++)
+            {
+                array[i] = array[i + 1];
+            }
+            size--;
+        }
+        else
+        {
+            cout << "Invalid index." << endl;
+        }
+    }
+
+    // Get the size of the list
+    int ListSize()
     {
         return size;
     }
 
+    // Print the entire list
     void printList()
     {
         for (int i = 0; i < size; i++)
         {
-            cout << arr[i] << "->";
+            cout << array[i] << " ";
         }
-        cout << "NULL" << endl;
+        cout << endl;
+    }
+
+    // Move the current index to the start of the list
+    void start()
+    {
+        currentIdx = 0;
+    }
+
+    // Move the current index to the end of the list
+    void end()
+    {
+        currentIdx = size - 1;
+    }
+
+    // Move to the next element
+    void next()
+    {
+        if (currentIdx < size - 1)
+        {
+            currentIdx++;
+        }
+    }
+
+    // Move to the previous element
+    void back()
+    {
+        if (currentIdx > 0)
+        {
+            currentIdx--;
+        }
+    }
+
+    // Get the value of the current element
+    int getcurrent()
+    {
+        if (currentIdx >= 0 && currentIdx < size)
+        {
+            return array[currentIdx];
+        }
+        return -1; // Invalid index
     }
 };
 
 int main()
 {
-    ArrayList myList;
+    ArrayList myList; // Create an instance of the ArrayList class
 
     int choice;
-    int num, addObject;
+    int value, index;
 
     do
     {
-        cout << "Array List Menu:" << endl;
-        cout << "  1. Add an element" << endl;
-        cout << "  2. Update an element" << endl;
-        cout << "  3. Remove an element" << endl;
-        cout << "  4. Move to the next element" << endl;
-        cout << "  5. Move to the previous element" << endl;
-        cout << "  6. Move to the start of the list" << endl;
-        cout << "  7. Move to the end of the list" << endl;
-        // cout << "  8. Add an element to the front" << endl;
-        cout << "  9. Print the list" << endl;
-        cout << "  10. Get the current element" << endl;
-        cout << "  11. Get the size of the list" << endl;
-        cout << "  12. Remove the current element" << endl;
-        cout << "  13. Exit" << endl;
-
+        // Display the menu
+        cout << "\nArrayList Menu:" << endl;
+        cout << "           1. Add an element in the list" << endl;
+        cout << "           2. Add an element at a specific index" << endl;
+        cout << "           3. Update an element at a specific index" << endl;
+        cout << "           4. Remove an element at a specific index" << endl;
+        cout << "           5. Get the size of the list" << endl;
+        cout << "           6. Print the list" << endl;
+        cout << "           7. Move to the start of the list" << endl;
+        cout << "           8. Move to the end of the list" << endl;
+        cout << "           9. Move to the next element" << endl;
+        cout << "           10. Move to the previous element" << endl;
+        cout << "           11. Get the value of the current element" << endl;
+        cout << "           12. Remove current element" << endl;
+        cout << "           0. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
 
         switch (choice)
         {
         case 1:
-            cout << "Enter the element to add: ";
-            cin >> addObject;
-            myList.add(addObject);
+            cout << "Enter the value to add: ";
+            cin >> value;
+            myList.add(value);
             break;
+
         case 2:
-            cout << "Enter the element to update: ";
-            cin >> num;
-            cout << "Enter the new value: ";
-            cin >> addObject;
-            myList.update(num, addObject);
+            cout << "Enter the value to add: ";
+            cin >> value;
+            cout << "Enter the index: ";
+            cin >> index;
+            myList.add_at(value, index);
             break;
+
         case 3:
-            cout << "Enter the element to remove: ";
-            cin >> num;
-            myList.remove_num(num);
+            cout << "Enter the index: ";
+            cin >> index;
+            cout << "Enter the new value: ";
+            cin >> value;
+            myList.update(index, value);
             break;
+
         case 4:
-            myList.next();
+            cout << "Enter the index to remove: ";
+            cin >> index;
+            myList.remove_at(index);
             break;
+
         case 5:
-            myList.back();
+            cout << "List size: " << myList.ListSize() << endl;
             break;
+
         case 6:
-            myList.start();
-            break;
-        case 7:
-            myList.tail();
-            break;
-        case 8:
+            cout << "List elements: ";
             myList.printList();
             break;
+
+        case 7:
+            myList.start();
+            break;
+
+        case 8:
+            myList.end();
+            break;
+
         case 9:
-            myList.getcurrent();
+            myList.next();
             break;
+
+        case 10:
+            myList.back();
+            break;
+
         case 11:
-            cout << "List size: " << myList.Listsize() << endl;
+            cout << "Current element: " << myList.getcurrent() << endl;
             break;
+
         case 12:
-            myList.remove_();
+            myList.remove();
             break;
-        case 13:
+
+        case 0:
             cout << "Exiting the program." << endl;
             break;
+
         default:
             cout << "Invalid choice. Please try again." << endl;
+            break;
         }
-
-    } while (choice != 13);
+    } while (choice != 0);
 
     return 0;
 }
