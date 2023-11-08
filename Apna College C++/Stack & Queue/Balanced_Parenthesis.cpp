@@ -1,59 +1,33 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool BalParen(string s)
+bool isBalanced(string s)
 {
     stack<char> st;
-    for (int i = 0; i < s.length(); i++)
-    {
-        if (s[i] == '(')
-        {
-            st.push(')');
-        }
-        else if (s[i] == '{')
-        {
-            st.push('}');
-        }
-        else if (s[i] == '[')
-        {
-            st.push(']');
-        }
+    unordered_map<char, char> closingBrackets = {{')', '('}, {']', '['}, {'}', '{'}};
 
-        else if (s[i] == ')')
-        {
-            if (st.top() != s[i])
-            {
-                return false;
-            }
-            st.pop();
-        }
-        else if (s[i] == '}')
-        {
-            if (st.top() != s[i])
-            {
-                return false;
-            }
-            st.pop();
-        }
-        else if (s[i] == ']')
-        {
-            if (st.top() != s[i])
-            {
-                return false;
-            }
-            st.pop();
-        }
-    }
-    if (st.empty())
+    for (char c : s)
     {
-        return true;
+        if (closingBrackets.count(c))
+        {
+            if (st.empty() || st.top() != closingBrackets[c])
+            {
+                return false;
+            }
+            st.pop();
+        }
+        else
+        {
+            st.push(c);
+        }
     }
-    return false;
+
+    return st.empty();
 }
 
 int main()
 {
     string s = "[{)}]";
-    cout << BalParen(s) << endl;
+    cout << isBalanced(s) << endl;
     return 0;
 }
