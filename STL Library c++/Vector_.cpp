@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 using namespace std;
 // vector is a array but in vector the memory allocation is Dynamic memory allocation
 // In vector if we add value the vactor size is automatically axtend
