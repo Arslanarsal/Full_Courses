@@ -69,7 +69,7 @@ public:
         }
         if (idx >= 0 && idx <= size)
         {
-            idx--;u
+            idx--;
             currentIdx = idx;
             add(addObject);
         }
