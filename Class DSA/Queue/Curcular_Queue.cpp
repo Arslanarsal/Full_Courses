@@ -121,7 +121,7 @@ int main()
     qu.enqueue(21);
     // qu.dequeue();
     // qu.enqueue(23);
-    // qu.dequeue();
+    qu.dequeue();
     cout << qu.top() << " ";
     qu.display();
 

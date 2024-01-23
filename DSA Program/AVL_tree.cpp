@@ -122,20 +122,21 @@ int main()
 
     root = insert(root, 9);
     // cout << root->key << endl;
-    root = insert(root, 8);
-    cout << "Hight is " << root->hight << endl;
-    cout << root->key << endl;
-    root = insert(root, 7);
-    cout << "Hight is " << root->hight << endl;
-    cout << root->key << endl;
-    root = insert(root, 6);
-    cout << "Hight is " << root->hight << endl;
-    cout << root->key << endl;
+    root = insert(root, 10);
+    // cout << "Hight is " << root->hight << endl;
+    // cout << root->key << endl;
     root = insert(root, 5);
-    cout << "Hight is " << root->hight << endl;
-    cout << root->key << endl;
+    // cout << "Hight is " << root->hight << endl;
+    // cout << root->key << endl;
+    root = insert(root, 8);
+    // cout << "Hight is " << root->hight << endl;
+    // cout << root->key << endl;
     root = insert(root, 2);
-    cout << "Hight is " << root->hight << endl;
+    // cout << "Hight is " << root->hight << endl;
+    // cout << root->key << endl;
+    root = insert(root, 1);
+
+    // cout << "Hight is " << root->hight << endl;
     cout << root->key << endl;
     // root = insert(root, 1);
     // cout << root->key << endl;

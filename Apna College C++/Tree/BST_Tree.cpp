@@ -84,7 +84,7 @@ int main()
     postOrder(root);
     cout << endl;
 
-    // InOrder(root);
-    // cout << endl;
+    InOrder(root);
+    cout << endl;
     return 0;
 }
