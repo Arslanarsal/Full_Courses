@@ -9,8 +9,8 @@ class bankdeposit
     int returnValue;
 
 public:
-    bankdeposit(){};//this function invoked when bd1 make  and garbidge value are stores in bd1 objects
-    
+    bankdeposit(){}; // this function invoked when bd1 make  and garbidge value are stores in bd1 objects
+
     bankdeposit(int, int, int);
     bankdeposit(int, int, float);
     void show();
