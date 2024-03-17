@@ -1,5 +1,12 @@
+import Fun from "./arsal.jsx";
+
 function App() {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <Fun />
+      <p>HELLO</p>
+    </>
+  );
 }
 
 export default App;
