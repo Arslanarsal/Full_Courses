@@ -1,33 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [todos, settodos] = useState([{
-    title: "this is gitle 1",
-    des: "Description of title 1"
-  },
-  {
-    title: "this is gitle 2",
-    des: "Description of title 2"
-  },
-  {
-    title: "this is gitle 3",
-    des: "Description of title 3"
-  },
-  ])
+  const [count, setCount] = useState(0);
+  const [todos, settodos] = useState([
+    {
+      title: "this is gitle 1",
+      des: "Description of title 1",
+    },
+    {
+      title: "this is gitle 2",
+      des: "Description of title 2",
+    },
+    {
+      title: "this is gitle 3",
+      des: "Description of title 3",
+    },
+  ]);
   const Todo = ({ todo }) => {
     return (
       <>
-        <div style={{ border: '2px solid red', padding:'10px' ,margin:'10px' }} >
+        <div
+          style={{ border: "2px solid red", padding: "10px", margin: "10px" }}
+        >
           <div>{todo.title}</div>
           <div>{todo.des}</div>
         </div>
       </>
-    )
-  }
+    );
+  };
 
   return (
     <>
@@ -41,9 +44,21 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       {todos.map((todo) => {
-        return <Todo todo={todo} />
-      })
-      }
+        return (
+          <>
+            <div
+              style={{
+                border: "2px solid red",
+                padding: "10px",
+                margin: "10px",
+              }}
+            >
+              <div>{todo.title}</div>
+              <div>{todo.des}</div>
+            </div>
+          </>
+        );
+      })}
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -56,7 +71,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
