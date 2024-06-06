@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <countercontext.Provider value={{ count, setCount }}>
-        <Navbar count={count} />
+        <Navbar/>
         <div>
           <a href="https://vitejs.dev" target="_blank">
             <img src={viteLogo} className="logo" alt="Vite logo" />
