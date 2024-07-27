@@ -1,0 +1,11 @@
+{
+  "name": "node-js-and-npm-with-file-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Node.js_and_npm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arslan",
+  "license": "ISC"
+}
