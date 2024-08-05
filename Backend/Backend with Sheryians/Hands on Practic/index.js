@@ -1,7 +1,7 @@
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const path = require("path");
+const fs = require("fs");
 const app = express();
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -10,11 +10,21 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.set("view engine", "ejs");
 
-app.use("/", function (req, res) {
-    res.render("index.ejs")
-})
+app.get("/", function (req, res) {
+  fs.readdir(`./files`, function (err, files) {
+    res.render("index", { file: files });
+  });
+});
 
+app.post(`/create`, function (req, res) {
+  fs.writeFile(
+    `./files/${req.body.title.split(" ").join("")}.txt`, req.body.details,
+    function (err) {
+      res.redirect("/");
+    }
+  );
+});
 
 app.listen(3000, () => {
-    console.log("Server is runing on port 3000");
-})
+  console.log("Server is runing on port 3000");
+});
