@@ -12,9 +12,24 @@ app.set("view engine", "ejs");
 
 app.get("/", function (req, res) {
   fs.readdir(`./files`, function (err, files) {
-    res.render("index", { file: files });
+    res.render("index", { files: files });
   });
 });
+
+
+app.get("/files/:filename", function (req, res) {
+  fs.readFile(`./files/${req.params.filename}`, "utf-8", function (err, filedata) {
+    if (err) {
+      console.log("File reading error");
+    }
+    else {
+      res.render("file", { filename: req.params.filename, filedata: filedata })
+
+    }
+  })
+});
+
+
 
 app.post(`/create`, function (req, res) {
   fs.writeFile(
