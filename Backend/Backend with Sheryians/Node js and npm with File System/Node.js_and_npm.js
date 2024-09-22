@@ -1,16 +1,14 @@
-// const { log } = require('node:console');
-// const fs = require('node:fs');
-// const http = require('http')
+const { log } = require("node:console");
+const fs = require("node:fs");
+const http = require("http");
 
-// fs.writeFile("first.txt" , "I any write anything in this file" , function(err){
-//     if (err) {
-//         console.error(err);
-//     }
-//     else{
-//         console.log("Done");
-//     }
-// })
-
+fs.writeFile("first.txt", "I any write anything in this file", function (err) {
+  if (err) {
+    console.error(err);
+  } else {
+    console.log("Done");
+  }
+});
 
 // fs.appendFile("first.txt" , "\n   if you can write you can append anyh thing" , function(err){
 //     if (err) {
@@ -38,7 +36,6 @@
 //     }
 // })
 
-
 // fs.unlink("Copyfile.txt", function(err){
 //     if (err) {
 //         console.log(err.message);
@@ -46,7 +43,6 @@
 //         console.log("Done");
 //     }
 // })
-
 
 // fs.readFile("reName.txt",'utf8', function (err, data) {
 //     if (err) {
@@ -62,6 +58,5 @@
 // })
 
 // server.listen(3000);
-
 
 console.log("Hey! Hello ");
