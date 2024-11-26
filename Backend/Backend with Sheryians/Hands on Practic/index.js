@@ -16,28 +16,27 @@ app.get("/", function (req, res) {
 });
 
 
-// app.get("/files/:filename", function (req, res) {
-//   fs.readFile(`./files/${req.params.filename}`, "utf-8", function (err, filedata) {
-//     if (err) {
-//       console.log("File reading error");
-//     }
-//     else {
-//       res.render("file", { filename: req.params.filename, filedata: filedata })
-
-//     }
-//   })
-// });
-
+app.get("/files/:filename", function (req, res) {
+  fs.readFile(`./files/${req.params.filename}`, "utf-8", function (err, filedata) {
+    if (err) {
+      console.log("File reading error");
+    }
+    else {
+      res.render("file", { filename: req.params.filename, filedata: filedata })
+    }
+  })
+});
 
 
-// app.post(`/create`, function (req, res) {
-//   fs.writeFile(
-//     `./files/${req.body.title.split(" ").join("")}.txt`, req.body.details,
-//     function (err) {
-//       res.redirect("/");
-//     }
-//   );
-// });
+
+app.post(`/create`, function (req, res) {
+  fs.writeFile(
+    `./files/${req.body.title.split(" ").join("")}.txt`, req.body.details,
+    function (err) {
+      res.redirect("/");
+    }
+  );
+});
 
 app.listen(3000, () => {
   console.log("Server is runing on port 3000");
