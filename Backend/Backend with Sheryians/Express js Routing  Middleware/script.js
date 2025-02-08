@@ -31,9 +31,9 @@ function routeSpecificMiddleware(req, res, next) {
 }
 
 // Route: Using route-specific middleware for the /about route
-// app.get("/about", routeSpecificMiddleware, function (req, res, next) {
-//   res.send("This is the about page");
-// });
+app.get("/about", routeSpecificMiddleware, function (req, res, next) {
+  res.send("This is the about page");
+});
 
 // Route: Default route without any specific middleware
 app.get("/", function (req, res) {

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  
+
   <div class="main w-full min-h-screen bg-zinc-900">
     <div class="form p-10 mr-10 text-white">
       <form action="/create" method="post">
@@ -22,7 +22,7 @@
 
     <div class="task p-10 flex gap-3 flex-wrap text-white">
       <% if(files.length> 0){ %>
-         <% files.forEach(function(item){ %>
+        <% files.forEach(function(item){ %>
           <div class="task w-72 rounded-md p-4 bg-zinc-700">
             <h1 class="text-2xl">
               <%= item %>

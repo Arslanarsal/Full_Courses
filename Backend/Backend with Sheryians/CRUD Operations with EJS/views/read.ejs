@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users Data</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <a href="/">GO tO Home</a>
+    <div class="max-w-5xl w-full">
+        <h1 class="text-4xl font-bold text-gray-800 text-center mb-10">Users Data</h1>
+        <div class="bg-white p-6 rounded-lg shadow-lg">
+            <!-- Single User -->
+             <% users.forEach((user)=>{ %>
+
+     
+            <div class="single-user bg-gray-50 rounded-lg shadow-md p-5 mb-6">
+                <div class="img bg-gray-300 w-full h-48 rounded-lg mb-4 overflow-hidden">
+                    <img class="w-full h-full onbject-cover" src="<%= user.image %>" alt="">
+                </div>
+                <h3 class="text-2xl font-semibold text-gray-800 mb-1"><%= user.name %></h3>
+                <p class="text-gray-600 mb-4"><%= user.email %></p>
+                <div class="flex gap-4">
+                    <a class="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition" href="#">
+                        Edit
+                    </a>
+                    <a class="bg-red-500 text-white py-2 px-6 rounded-lg hover:bg-red-600 transition" href="/delete/<%= user._id %>">
+                        Delete
+                    </a>
+                </div>
+            </div>  
+              <%  }) %>
+            <!-- End Single User -->
+        </div>
+    </div>
+</body>
+
+</html>

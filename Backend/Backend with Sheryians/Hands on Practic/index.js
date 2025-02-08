@@ -15,7 +15,6 @@ app.get("/", function (req, res) {
   });
 });
 
-
 app.get("/files/:filename", function (req, res) {
   fs.readFile(`./files/${req.params.filename}`, "utf-8", function (err, filedata) {
     if (err) {
@@ -26,8 +25,6 @@ app.get("/files/:filename", function (req, res) {
     }
   })
 });
-
-
 
 app.post(`/create`, function (req, res) {
   fs.writeFile(

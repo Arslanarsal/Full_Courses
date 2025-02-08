@@ -1,27 +1,30 @@
 import { useState } from "react";
-import  InputBox  from "./components/InputBox";
-import  useCurrencyInfo  from "./hooks/useCurrencyInfo";
+import InputBox from "./components/InputBox";
+import useCurrencyInfo from "./hooks/useCurrencyInfo";
 
 function App() {
-  
   const [amount, setAmount] = useState(0);
   const [from, setFrom] = useState("usd");
-  const [to, setTo] = useState("inr");
+  const [to, setTo] = useState("pkr");
   const [convertedAmount, setConvertedAmount] = useState(0);
 
   const currencyInfo = useCurrencyInfo(from);
-
-  const options = Object.keys(currencyInfo);
+  const options = Object.keys(currencyInfo || {});
 
   const swap = () => {
     setFrom(to);
     setTo(from);
-    setConvertedAmount(amount);
-    setAmount(convertedAmount);
+    setAmount(convertedAmount); 
+    setConvertedAmount(0); 
   };
 
   const convert = () => {
-    setConvertedAmount(amount * currencyInfo[to]);
+    const conversionRate = currencyInfo[to];
+    if (conversionRate) {
+      setConvertedAmount(amount * conversionRate);
+    } else {
+      alert("Conversion rate not available");
+    }
   };
 
   return (
@@ -44,9 +47,9 @@ function App() {
                 label="From"
                 amount={amount}
                 currencyOptions={options}
-                onCurrencyChange={(amount) => setAmount(amount)}
+                onCurrencyChange={(currency) => setFrom(currency)}
                 selectCurrency={from}
-                onAmountChange={(amount) => setAmount(amount)}
+                onAmountChange={(value) => setAmount(value)}
               />
             </div>
             <div className="relative w-full h-0.5">
@@ -55,7 +58,7 @@ function App() {
                 className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
                 onClick={swap}
               >
-                swap
+                Swap
               </button>
             </div>
             <div className="w-full mt-1 mb-4">
@@ -64,7 +67,7 @@ function App() {
                 amount={convertedAmount}
                 currencyOptions={options}
                 onCurrencyChange={(currency) => setTo(currency)}
-                selectCurrency={from}
+                selectCurrency={to}
                 amountDisable
               />
             </div>
