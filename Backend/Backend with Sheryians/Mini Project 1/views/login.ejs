@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="p-4">
+    <div class="w-full">
+        <form action="/login" method="post" class="flex space-x-2">
+
+            <input type="text" name="username" placeholder="Username"
+                class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <input type="password" name="password" placeholder="Password"
+                class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+
+            <input type="submit" value="Iogin Account"
+                class="bg-blue-500 text-white font-semibold px-4 py-2 rounded-lg hover:bg-blue-600 cursor-pointer">
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="p-4 bg-gray-100">
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-lg">
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-xl font-semibold">Hi, <%= user.name %>
+            </h1>
+            <a href="logout" class="text-blue-600 hover:underline">Logout</a>
+        </div>
+
+        <h5 class="text-gray-700 mb-2">You can create a post</h5>
+        <form action="/postss" method="post" class="space-y-4">
+            <textarea placeholder="You can write anything here..." name="post_content"
+                class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Submit</button>
+        </form>
+
+        <div class="mt-6">
+            <h3 class="text-lg font-semibold">Your posts</h3>
+            <div class="mt-4 space-y-4">
+                <% user.post.forEach(function(posts){ %>
+                <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+                    <h4 class="font-bold"><%= user.username %></h4>
+                    <p class="text-gray-700"> <%= posts.content %>
+                    </p>
+                    <div class="mt-2 flex space-x-4">
+                        <a href="#" class="text-blue-500 hover:underline">Like</a>
+                        <a href="#" class="text-blue-500 hover:underline">Edit</a>
+                    </div>
+                </div>
+                <%}) %>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
