@@ -32,8 +32,9 @@
                     <p class="text-gray-700"> <%= posts.content %>
                     </p>
                     <div class="mt-2 flex space-x-4">
-                        <a href="#" class="text-blue-500 hover:underline">Like</a>
-                        <a href="#" class="text-blue-500 hover:underline">Edit</a>
+                        <p class="text-gray-700" ><%= posts.likes.length %> </p>
+                        <a href="/post/<%= posts._id %>" class="text-blue-500 hover:underline"> <%=(posts.likes.indexOf(user._id) === -1) ? "like" : "Unlike" %> </a>
+                        <a href="/edit/<%=user._id%>" class="text-blue-500 hover:underline">Edit</a>
                     </div>
                 </div>
                 <%}) %>
