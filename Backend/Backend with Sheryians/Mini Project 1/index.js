@@ -4,7 +4,7 @@ const userModel = require(`./modules/user`);
 const postModel = require(`./modules/post`);
 const cookieParser = require(`cookie-parser`);
 const bcrypt = require(`bcrypt`);
-const jwt = require(`jsonwebtoken`)
+const jwt = require(`jsonwebtoken`) 
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
