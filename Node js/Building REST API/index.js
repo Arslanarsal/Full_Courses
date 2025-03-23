@@ -34,10 +34,7 @@ const userScheme = mongoose.Schema({
 }, { timeStamp: true })
 
 const userMode = mongoose.model("user", userScheme)
-
 userMode.create()
-
-
 // app.get('/api/user', (req, res) => {
 //     const html = `
 //     <ul>
@@ -66,14 +63,39 @@ app.get('/api/user/:id', (req, res) => {
     res.send(user);
 })
 
-app.post('/api/user/', (req, res) => {
+// app.post('/api/user', async (req, res) => {
+//     try {
+//         const { name, username, email, gender } = req.body;
+//         if (!name || !username || !email || !gender) {
+//             return res.status(400).json({ error: "All fields are required" });
+//         }
+
+//         const newUser = await UserModel.create({ name, username, email, gender });
+//         res.status(201).json({ message: "User created successfully", user: newUser });
+//     } catch (error) {
+//         res.status(500).json({ error: "Failed to create user" });
+//     }
+// });
+
+app.post('/api/user',  async (req, res) => {
     const body = req.body;
     console.log("Body", body);
 
-    users.push({ ...body, id: users.length + 1 })
-    fs.writeFile("MOCK_DATA.json", JSON.stringify(users), (err, data) => {
-        return res.json("Status in post");
-    })
+    const result = await userMode.create({
+        name: req.body.first_name,
+        username: req.body.last_name,
+        email: req.body.email,
+        gender: req.body.gender
+    });
+
+    console.log("Result ", result);
+
+    return res.status(201).json("Success")
+
+    // users.push({ ...body, id: users.length + 1 })
+    // fs.writeFile("MOCK_DATA.json", JSON.stringify(users), (err, data) => {
+    //     return res.json("Status in post");
+    // })
 
 })
 
