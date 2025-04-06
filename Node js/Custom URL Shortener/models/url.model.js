@@ -3,16 +3,16 @@ const mongoose = require('mongoose');
 const urlSchema = new mongoose.Schema({
     shortUrl: {
         type: String,
-        required: true, 
+        required: true,
         unique: true
     },
     requiredUrl: {
         type: String,
-        required: true   
+        required: true
     },
     history: {
         type: [{ timestamp: { type: Number } }],
-        default: []     
+        default: []
     }
 }, { timestamps: true });
 
