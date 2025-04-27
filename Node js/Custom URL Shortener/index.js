@@ -1,8 +1,13 @@
 const express = require('express')
 const app = express();
+const path = require('path')
+
+
+app.set('view engine', 'ejs')
+app.set('views', path.resolve('./views'))
 
 const connect = require('./connetion.js')
- connect("mongodb://127.0.0.1:27017/terl").then(() => {
+connect("mongodb://127.0.0.1:27017/terl").then(() => {
     console.log("Mongodb Connect!")
 })
 app.use(express.json());
@@ -13,24 +18,7 @@ app.use('/url', routeurl)
 
 app.get('/aluser', async function (req, res) {
     const alluser = await urlModel.find({});
-    return res.end(
-
-        `
-        <html></html>
-        <head></head>
-        <body> 
-        <ol>
-        ${
-            alluser.map(user => 
-                `<li>${user.requiredUrl}</li> 
-                 <li>${user.short}</li>  
-                 <li>${user.history.length}
-                 </li>`).join(' ')
-        }
-        </ol>
-        </body>
-        `
-    )
+    return res.render('home' , {alluser})
     // res.json(alluser)
 })
 
