@@ -1,5 +1,5 @@
 const express = require(`express`)
-const {ConnectDB} = require('./connection.js')
+const { ConnectDB } = require('./connection.js')
 // const users = require(`./MOCK_DATA.json`);
 const app = express();
 exports.app = app;
