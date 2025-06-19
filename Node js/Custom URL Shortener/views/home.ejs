@@ -4,18 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>All Users' URLs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <ol>
-        <% alluser.forEach(user => { %>
-            <li><%= user.requiredUrl %></li>
-            <li><%= user.short %></li>
-            <li><%= user.history.length %></li>
-        <% }) %>
-    </ol>
-    
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <div class="max-w-4xl mx-auto p-6">
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-8">User URL Data</h1>
+
+        <!-- URL Submit Form -->
+        <form action="/url" method="POST" class="mb-8 flex items-center gap-4">
+            <input type="url" name="url" placeholder="Enter original URL"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow">Shorten</button>
+        </form>
+
+        <!-- List of User URLs -->
+        <ol class="space-y-6">
+            <% alluser.forEach(user => { %>
+                <li class="bg-white p-6 rounded-xl shadow-md">
+                    <p><span class="font-semibold text-gray-700">Original URL:</span>
+                        <a href="<%= user.requiredUrl %>" target="_blank" class="text-blue-600 hover:underline break-words">
+                            <%= user.requiredUrl %>
+                        </a>
+                    </p>
+
+                    <p><span class="font-semibold text-gray-700">Short URL:</span>
+                        <a href="/<%= user.short %>" target="_blank" class="text-blue-600 hover:underline">
+                            <%= user.short %>
+                        </a>
+                    </p>
+
+                    <p><span class="font-semibold text-gray-700">History Count:</span>
+                        <%= user.history.length %>
+                    </p>
+                </li>
+            <% }) %>
+        </ol>
+    </div>
 </body>
 
 </html>
