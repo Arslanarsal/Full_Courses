@@ -1,5 +1,6 @@
 const TinyURL = require('tinyurl');
 const urlModel = require('../models/url.model.js')
+
 const shorterUrl = async function (req, res) {
     const url = req.body?.url || "";
     if (!url) {
@@ -25,10 +26,15 @@ const shorterUrl = async function (req, res) {
         shortUrl,
         requiredUrl: url,
     });
-    // console.log(urlll);
 
-    return res.status(201).json(urlll);
+    return res.redirect('/aluser');
 
 }
 
-module.exports = shorterUrl
+const AlluserUrl = async function (req, res) {
+    let alluser = await urlModel.find({});
+    return res.render("home", { alluser });
+}
+
+
+module.exports = { shorterUrl, AlluserUrl }
