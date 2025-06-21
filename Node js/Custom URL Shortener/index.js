@@ -28,9 +28,6 @@ app.use('/user', userRoute)
 
 
 
-
-
-
 // const urlModel = require('./models/url.model.js');
 // app.get('/:shortId', async (req, res) => {
 //     const urll = await urlModel.findOneAndUpdate(
