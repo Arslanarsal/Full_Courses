@@ -1,6 +1,8 @@
 const { model } = require('mongoose');
 const userModel = require('../models/user.model.js')
 const urlModel = require('../models/url.model.js')
+const { setId } = require('../services/auth.js')
+const uuid = require('uuid')
 
 const userSignup = async function (req, res) {
     try {
@@ -8,16 +10,17 @@ const userSignup = async function (req, res) {
         if (!email || !name || !password) {
             return res.send("All field required")
         }
-        
+
 
         let user = await userModel.create({
             name, email, password
         })
 
-        let alluser =await urlModel.find();
+        const session = uuid.v4();
+        setId(session, user);
+        res.cookie("uuid", session);
 
-
-        res.render("home" , {alluser})
+        res.redirect("/aluser")
     } catch (error) {
         res.send("Error on signUps" + error.message)
     }
@@ -25,25 +28,25 @@ const userSignup = async function (req, res) {
 
 const userlogin = async function (req, res) {
     try {
-        let { email,password } = req.body;
-        if (!email ||  !password) {
+        let { email, password } = req.body;
+        if (!email || !password) {
             return res.send("All field required")
         }
 
         let user = await userModel.findOne({
-             email, password
+            email, password
         })
 
         if (!user) {
-           return res.render('login')
+            return res.render('login')
         }
+        const session = uuid.v4();
+        setId(session, user);
+        res.cookie("uuid", session);
 
-        let alluser =await urlModel.find();
-
-
-        res.render("home" , {alluser})
+        res.redirect("/aluser")
     } catch (error) {
         res.send("Error on signUps" + error.message)
     }
 }
-module.exports = {userSignup , userlogin}
+module.exports = { userSignup, userlogin }

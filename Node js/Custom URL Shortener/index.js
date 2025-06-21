@@ -1,12 +1,15 @@
 const express = require('express')
 const path = require('path')
 const connect = require('./connetion.js')
+const cookieParser = require('cookie-parser')
+const { isloggedIn } = require('./middlewares/isloggedIn.js')
 
 const app = express();
 app.set('view engine', 'ejs')
 app.set('views', path.resolve('./views'))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser());
 
 connect("mongodb://127.0.0.1:27017/ShortUrl").then(() => {
     console.log("Mongodb Connect!")
@@ -22,8 +25,8 @@ const userRoute = require('./routes/user.js')
 
 
 app.use('/', staticRoute);
-app.use('/url', routeurl)
-app.use('/aluser', allUserRouter);
+app.use('/url', isloggedIn, routeurl)
+app.use('/aluser' , isloggedIn, allUserRouter);
 app.use('/user', userRoute)
 
 
