@@ -1,0 +1,16 @@
+{
+  "name": "web-socket",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "npx nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.16.1",
+    "socket.io": "^4.8.1"
+  }
+}
