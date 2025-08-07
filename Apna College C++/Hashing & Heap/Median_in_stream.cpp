@@ -55,9 +55,7 @@ vector<int> findMedian(vector<int> &arr, int n)
         }
 
         if (pqmax.size() == pqmin.size())
-        {
             ans.push_back((pqmax.top() + pqmin.top()) / 2);
-        }
         else if (pqmax.size() > pqmin.size())
         {
             ans.push_back(pqmax.top());
